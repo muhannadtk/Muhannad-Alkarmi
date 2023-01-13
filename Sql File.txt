@@ -1,0 +1,33 @@
+create table doctor(
+id int primary key auto_increment,
+name varchar(100),
+phone_number varchar(15),
+specialty varchar(50),
+foreign key (user_id) references user(id)));
+
+create table patient(
+id int primary key auto_increment,
+name varchar(100),
+user_id int,
+phone_number varchar(15),
+age int,
+gender int,
+national_id varchar(10),
+foreign key (user_id) references user(id));
+
+create table appointment(
+id int primary key auto_increment,
+status int default 1,
+doctor_id int,
+patient_id int,
+date date,
+time time,
+foreign key (doctor_id) references doctor(id),
+foreign key (patient_id) references patient(id)
+);
+
+create table user(
+id int primary key auto_increment,
+username varchar(50) unique not null,
+password varchar(50)not null
+ );
